@@ -122,19 +122,117 @@
 </div>
 
 <script>
-/*
-document.getElementById( "Img" ).onclick = function() {
-    // img clicked
-};
-*/
 
-$(document).ready(function(){
-  $('body').on('click', 'img', function() {
-    alert('it works');
-  })
-});
+let imgArray = [
+"https://cdna.artstation.com/p/assets/images/images/017/732/628/large/even-amundsen-2da23d94-7e10-4295-9223-969af0b4d265.jpg?1557149418",
+"https://cdnb.artstation.com/p/assets/images/images/004/239/951/large/manuel-castanon-knight-girl-high-resolution.jpg?1562781751",
+"https://cdna.artstation.com/p/assets/images/images/006/606/388/large/zudarts-lee-170601-01.jpg?1499878487",
+"https://cdna.artstation.com/p/assets/images/images/013/225/918/large/frederic-arsenault-full-beauty-name.jpg?1538637573",
+"https://cdna.artstation.com/p/assets/images/images/013/421/986/large/jaromir-hrivnac-20181005-sp5ii.jpg?1539543619",
+"https://cdna.artstation.com/p/assets/images/images/006/623/886/large/jonah-booth-remmers-knight.jpg?1500015016",
+"https://cdnb.artstation.com/p/assets/images/images/004/736/527/large/grzegorz-rutkowski-knight-study-4-1200.jpg?1485890644",
+"https://cdna.artstation.com/p/assets/images/images/010/829/628/large/steve-jung-knights-sj-low.jpg?1526447238",
+"https://cdnb.artstation.com/p/assets/images/images/002/213/207/large/_-dofresh-_-notavalon-def-halfsize.jpg?1458914308",
+"https://cdna.artstation.com/p/assets/images/images/013/011/240/large/antony-carlyon-blank-square.jpg?1537630464",
+"https://cdna.artstation.com/p/assets/images/images/007/853/612/large/stefan-kopinski-crusader1.jpg?1508939797",
+"https://cdna.artstation.com/p/assets/images/images/007/023/742/large/stefan-kopinski-lion-heart.jpg?1503095855"
 
+]
 
+  const d12 = 12;
+
+  $(document).ready(function(){
+    $('body').on('click', 'img', function() {
+      alert('randomize images!');
+      randomizeImages()
+    })
+  });
+
+  function rollDie (dieType) {
+    let result = Math.floor(Math.random() * dieType + 1);
+    return result
+  }
+  
+  function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+// Used like so
+//var arr = [2, 11, 37, 42];
+//arr = shuffle(arr);
+//console.log("test array: " + arr);
+  
+  
+  
+  function randomizeImages () {
+  
+    // every click will randomize the array
+    imgArray = shuffle(imgArray)
+    console.log(imgArray)
+  
+  
+    for (let i=0; i<12; i++) {
+      console.log("i: " + i)
+      
+      // change the url on the page 
+      switch(i) {
+        case 0:
+          $('#img_a1').attr('src', imgArray[i])
+          break;
+        case 1:
+          $('#img_a2').attr('src', imgArray[i])
+          break;
+        case 2:
+          $('#img_a3').attr('src', imgArray[i])
+          break;
+        case 3:
+          $('#img_a4').attr('src', imgArray[i])
+          break;
+        case 4:
+          $('#img_b1').attr('src', imgArray[i])
+          break;
+        case 5:
+          $('#img_b2').attr('src', imgArray[i])
+          break;
+        case 6:
+          $('#img_b3').attr('src', imgArray[i])
+          break;
+        case 7:
+          $('#img_b4').attr('src', imgArray[i])
+          break;
+        case 8:
+          $('#img_c1').attr('src', imgArray[i])
+          break;
+        case 9:
+          $('#img_c2').attr('src', imgArray[i])
+          break;
+        case 10:
+          $('#img_c3').attr('src', imgArray[i])
+          break;
+        case 11:
+          $('#img_c4').attr('src', imgArray[i])
+          break;
+      }
+    }
+  } 
+  
+  
+  
 
 </script>
 </body>
