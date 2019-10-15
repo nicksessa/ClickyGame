@@ -10,6 +10,14 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   
   <style>
+  .nav {
+    height: 80px;
+  }
+  
+  body{
+    font-size: 24px;
+    font-family: "Times New Roman", Times, serif;
+  }
     img {
         /*width: 200px;*/ /* You can set the dimensions to whatever you want */
         width: 100%;
@@ -30,9 +38,9 @@
 
 <!-- Nav Bar-->
 
-<div class="container-fluid p-0">
-  <ul class="nav justify-content-around bg-primary shadow-lg">
-    <li class="nav-item">
+<div class="container-fluid p-0 mb-5">
+  <ul class="nav justify-content-around bg-primary shadow-lg fixed-top align-items-center">
+    <li class="nav-item ">
       <a class="nav-link text-white" href="#">Clicky Game</a>
     </li>
     <li class="nav-item text-white align-self-center">
@@ -47,7 +55,7 @@
 <!-- Page Header -->
 
 <div class="header">
-  <div class="jumbotron bg-secondary text-center text-white rounded-0">
+  <div class="jumbotron bg-secondary text-center text-white rounded-0" style="background-image: url( https://cdna.artstation.com/p/assets/images/images/000/185/950/large/juhani-jokinen-castle-sketch.jpg?1443928773); background-size: cover;">
     <h1>Clicky Game!</h1>
     <h4>Click on an image to earn points, but don't click on any more than once!</h4>
   </div>
