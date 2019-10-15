@@ -31,7 +31,7 @@
     <li class="nav-item text-white align-self-center">
       Click on an image to begin!
     </li>
-    <li class="nav-item text-white align-self-center">
+    <li id="scoreBoard" class="nav-item text-white align-self-center">
       Score: 0 | Top Score: 0
     </li>
   </ul>
@@ -139,11 +139,90 @@ let imgArray = [
 
 ]
 
-  const d12 = 12;
+  let img_obj = [
+    {
+      url: "https://cdna.artstation.com/p/assets/images/images/017/732/628/large/even-amundsen-2da23d94-7e10-4295-9223-969af0b4d265.jpg?1557149418",
+      clicked: false
+    },
+    {
+      url: "https://cdnb.artstation.com/p/assets/images/images/004/239/951/large/manuel-castanon-knight-girl-high-resolution.jpg?1562781751",
+      clicked: false
+    },
+    {
+      url: "https://cdna.artstation.com/p/assets/images/images/006/606/388/large/zudarts-lee-170601-01.jpg?1499878487",
+      clicked: false
+    },
+    {
+      url: "https://cdna.artstation.com/p/assets/images/images/013/225/918/large/frederic-arsenault-full-beauty-name.jpg?1538637573",
+      clicked: false
+    },
+    {
+      url: "https://cdna.artstation.com/p/assets/images/images/013/421/986/large/jaromir-hrivnac-20181005-sp5ii.jpg?1539543619",
+      clicked: false
+    },
+    {
+      url: "https://cdna.artstation.com/p/assets/images/images/006/623/886/large/jonah-booth-remmers-knight.jpg?1500015016",
+      clicked: false
+    },
+    {
+      url: "https://cdnb.artstation.com/p/assets/images/images/004/736/527/large/grzegorz-rutkowski-knight-study-4-1200.jpg?1485890644",
+      clicked: false
+    },
+    {
+      url: "https://cdna.artstation.com/p/assets/images/images/010/829/628/large/steve-jung-knights-sj-low.jpg?1526447238",
+      clicked: false
+    },
+    {
+      url: "https://cdnb.artstation.com/p/assets/images/images/002/213/207/large/_-dofresh-_-notavalon-def-halfsize.jpg?1458914308",
+      clicked: false
+    },
+    {
+      url: "https://cdna.artstation.com/p/assets/images/images/013/011/240/large/antony-carlyon-blank-square.jpg?1537630464",
+      clicked: false
+    },
+    {
+      url: "https://cdna.artstation.com/p/assets/images/images/007/853/612/large/stefan-kopinski-crusader1.jpg?1508939797",
+      clicked: false
+    },
+    {
+      url: "https://cdna.artstation.com/p/assets/images/images/007/023/742/large/stefan-kopinski-lion-heart.jpg?1503095855",
+      clicked: false
+    }
+    
+  ]
+  
+  let topScore = 0
+  let yourScore = 0
+  let scoreBoardText = "Score: 0 | Top Score: 0"
+
+  function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+  }
 
   $(document).ready(function(){
-    $('body').on('click', 'img', function() {
-      alert('randomize images!');
+    $('body').on('click', 'img', function(e) {
+      //alert('randomize images!');
+      var imageSRC = e.target.getAttribute("src");
+      alert("You clicked: " + imageSRC);
+      
+      //const map = {"first" : "1", "second" : "2"};
+      //console.log(getKeyByValue(img_obj, imageSRC));
+      
+      const getImgObj = img_obj.find(theObj => theObj.url == imageSRC)
+      console.log("url: " + getImgObj.url)
+      console.log("clicked: " + getImgObj.clicked)
+      if (getImgObj.clicked) {
+        alert("You already clicked that image! Game Over!")
+        if (yourScore > topScore) {
+          topScore = yourScore
+          $("#scoreBoard").text(`Score: ${yourScore} | Top Score: ${topScore}`)
+        }
+      } else {
+        yourScore++
+        $("#scoreBoard").text(`Score: ${yourScore} | Top Score: ${topScore}`)
+        getImgObj.clicked = true
+      }
+      
       randomizeImages()
     })
   });
