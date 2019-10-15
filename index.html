@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Clicky Game</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -16,6 +16,13 @@
         height: 300px;
         object-fit: cover;
     }
+
+
+  .myShadow:hover {
+    /*box-shadow: 0 0 11px rgba(255,100,90,.7);*/
+    box-shadow: 0 0 11px rgba(44, 117, 206, .7)
+  }
+
 
   </style>
 </head>
@@ -51,20 +58,20 @@
 <div class="body">
   <div class="container">
     <div class="row mb-4">
-      <div class="col">
+      <div class="col myShadow">
 
         <img id="img_a1" src="https://cdna.artstation.com/p/assets/images/images/017/732/628/large/even-amundsen-2da23d94-7e10-4295-9223-969af0b4d265.jpg?1557149418" class="btn shadow " type="button" alt="mounted knight" >
 
       </div> <!-- col 1 -->
-      <div class="col">
+      <div class="col myShadow">
         <img id="img_a2" src="https://cdnb.artstation.com/p/assets/images/images/004/239/951/large/manuel-castanon-knight-girl-high-resolution.jpg?1562781751" class="btn shadow " type="button" alt="female knight" >
       </div> <!-- col 2 -->
         
-      <div class="col">
+      <div class="col myShadow">
         <img id="img_a3" src="https://cdna.artstation.com/p/assets/images/images/006/606/388/large/zudarts-lee-170601-01.jpg?1499878487" class="btn shadow " type="button" alt="knight study" >
       </div> <!-- col 3 -->
         
-      <div class="col">
+      <div class="col myShadow">
         <img id="img_a4" src="https://cdna.artstation.com/p/assets/images/images/013/225/918/large/frederic-arsenault-full-beauty-name.jpg?1538637573" class="btn shadow " type="button" alt="templar" >
       </div> <!-- col 4 -->
     </div> <!-- row 1 -->
@@ -72,19 +79,19 @@
 <!-- new row -->
 
     <div class="row mb-4">
-      <div class="col">
+      <div class="col myShadow">
         <img id="img_b1" src="https://cdna.artstation.com/p/assets/images/images/013/421/986/large/jaromir-hrivnac-20181005-sp5ii.jpg?1539543619" alt="knight" class="btn shadow " type="button" >
       </div> <!-- col 1 -->
         
-      <div class="col">
+      <div class="col myShadow">
         <img id="img_b2" src="https://cdna.artstation.com/p/assets/images/images/006/623/886/large/jonah-booth-remmers-knight.jpg?1500015016" alt="knight" class="btn shadow " type="button" >
       </div> <!-- col 2 -->
       
-      <div class="col">
+      <div class="col myShadow">
         <img id="img_b3" src="https://cdnb.artstation.com/p/assets/images/images/004/736/527/large/grzegorz-rutkowski-knight-study-4-1200.jpg?1485890644" alt="knight" class="btn shadow " type="button" >
       </div> <!-- col 3 -->
       
-      <div class="col">
+      <div class="col myShadow">
         <img id="img_b4" src="https://cdna.artstation.com/p/assets/images/images/010/829/628/large/steve-jung-knights-sj-low.jpg?1526447238" alt="two knights" class="btn shadow " type="button" >
       </div> <!-- col 4 -->
     </div> <!-- row 2 -->
@@ -92,19 +99,19 @@
 <!-- new row -->
 
     <div class="row mb-4">
-      <div class="col">
+      <div class="col myShadow">
         <img id="img_c1" src="https://cdnb.artstation.com/p/assets/images/images/002/213/207/large/_-dofresh-_-notavalon-def-halfsize.jpg?1458914308" class="btn shadow " type="button" >
       </div> <!-- col 1 -->
       
-      <div class="col">
+      <div class="col myShadow">
         <img id="img_c2" src="https://cdna.artstation.com/p/assets/images/images/013/011/240/large/antony-carlyon-blank-square.jpg?1537630464" class="btn shadow " type="button" >
       </div> <!-- col 2 -->
       
-      <div class="col">
+      <div class="col myShadow">
         <img id="img_c3" src="https://cdna.artstation.com/p/assets/images/images/007/853/612/large/stefan-kopinski-crusader1.jpg?1508939797" class="btn shadow " type="button" >
       </div> <!-- col 3 -->
       
-      <div class="col">
+      <div class="col myShadow">
         <img id="img_c4" src="https://cdna.artstation.com/p/assets/images/images/007/023/742/large/stefan-kopinski-lion-heart.jpg?1503095855" class="btn shadow " type="button" >
       </div> <!-- col 4 -->
     </div> <!-- row 3 -->
@@ -203,7 +210,7 @@ let imgArray = [
     $('body').on('click', 'img', function(e) {
       //alert('randomize images!');
       var imageSRC = e.target.getAttribute("src");
-      alert("You clicked: " + imageSRC);
+      //alert("You clicked: " + imageSRC);
       
       //const map = {"first" : "1", "second" : "2"};
       //console.log(getKeyByValue(img_obj, imageSRC));
@@ -213,14 +220,32 @@ let imgArray = [
       console.log("clicked: " + getImgObj.clicked)
       if (getImgObj.clicked) {
         alert("You already clicked that image! Game Over!")
+        // reset the clicked values to false
+        img_obj.forEach(function(obj) {
+          obj.clicked = false;
+        })
+        $("#scoreBoard").text(`Score: 0 | Top Score: ${topScore}`)
+        // record the top score
         if (yourScore > topScore) {
           topScore = yourScore
-          $("#scoreBoard").text(`Score: ${yourScore} | Top Score: ${topScore}`)
+          $("#scoreBoard").text(`Score: 0 | Top Score: ${topScore}`)
         }
+        yourScore = 0
       } else {
         yourScore++
         $("#scoreBoard").text(`Score: ${yourScore} | Top Score: ${topScore}`)
         getImgObj.clicked = true
+        if (yourScore == 12) {
+          alert("Perfect score!  You win!")
+          alert("Resetting the game.")
+          $("#scoreBoard").text(scoreBoardText)
+          yourScore = 0
+          topScore = 0
+          
+          img_obj.forEach(function(obj) {
+            obj.clicked = false;
+          })
+        }
       }
       
       randomizeImages()
